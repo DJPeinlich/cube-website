@@ -1,0 +1,978 @@
+:root {
+  --primary: #ed6f07;
+  --dark: #111111;
+  --gray: #777777;
+  --light-gray: #fafafa;
+  --border: #f0f0f0;
+  --white: #ffffff;
+}
+
+/* Preloader Hidden State (Prevention) */
+.hide-preloader #preloader {
+  display: none !important;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* scroll-behavior: smooth removed to allow GSAP full control */
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--dark);
+  background: var(--primary); /* Matches the hero so no gap shows when hero drifts up */
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utilities */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.text-center { text-align: center; }
+.text-primary { color: var(--primary); }
+
+.opacity-0 { opacity: 0; }
+.opacity-100 { opacity: 1; }
+
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+footer {
+  /* padding kept default */
+}
+
+.bg-white { background: var(--white); }
+.bg-light { background: var(--primary); } /* Override: body is orange so hexagon valleys show correct color */
+
+/* Typography */
+h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-size: 1.125rem;
+  color: var(--gray);
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.lead {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin-inline: auto;
+  color: var(--gray);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: var(--dark);
+  color: var(--white);
+  padding: 16px 36px;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--primary);
+  opacity: 1;
+  color: var(--white);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--dark);
+}
+
+.btn-outline:hover {
+  border-color: var(--dark);
+  background: transparent;
+}
+
+/* Header (Pill Style) */
+header.main-header {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  background: var(--white);
+  border: 4px solid var(--dark);
+  border-radius: 60px;
+  box-shadow: 4px 4px 0px 0px var(--dark);
+  z-index: 100;
+  padding: 15px 40px;
+  transition: transform 0.3s ease;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-hex-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a.nav-item {
+  font-family: inherit; /* use same font but sketchy style via uppercase */
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--dark);
+  position: relative;
+}
+
+.nav-links a.nav-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--dark);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links a.nav-item:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-sketchy {
+  background: var(--primary);
+  border: 3px solid var(--dark);
+  border-radius: 30px;
+  padding: 8px 24px;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--dark);
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 var(--dark);
+  transition: all 0.2s ease;
+}
+
+.btn-sketchy:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--dark);
+  opacity: 1; /* override default a:hover */
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  background: var(--primary);
+  padding: 220px 0 calc(30vh + 60px) 0;
+  position: fixed; /* Permanently fixed in the background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  z-index: 1; /* Stay behind the scrolling content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none; /* Let clicks pass through if needed, though z-index handles it */
+}
+
+.hero-title {
+  color: var(--dark);
+  font-weight: 800;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.hero-title span {
+  color: var(--white);
+  -webkit-text-stroke: 2px var(--dark);
+}
+
+.hero-subtitle {
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-top: 30px;
+}
+
+.transition-divider {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 16;
+  margin-bottom: -50px;
+  overflow: visible;
+  /* drop-shadow on the hex teeth for depth against the orange */
+  filter: drop-shadow(0 -20px 14px rgba(0,0,0,0.28));
+  /* clip-path allows shadow to extend freely above & to the sides,
+     but clips EXACTLY at the element's bottom edge — no shadow bleeds down onto white */
+  clip-path: inset(-300px -60px 0px -60px);
+}
+
+/* Wrapper for content that scrolls OVER the hero */
+.scrolling-wrapper {
+  position: relative;
+  z-index: 5;
+  margin-top: 70vh;
+  /* No background here — the orange hero must show through the SVG hexagon cutouts */
+}
+
+
+/* Content blocks under the line */
+.scrolling-wrapper section {
+  background: var(--white);
+  position: relative;
+  z-index: 15; /* HIGHER than the SVG so the sharp white rectangle covers any straight shadow lines */
+}
+
+/* ============================================================ */
+/* RAIN ZONE — App, Cube & Combination                          */
+/* Canvas lives INSIDE here, clipped by overflow:hidden         */
+/* ============================================================ */
+.rain-zone {
+  position: relative;
+  overflow: hidden;
+  background: var(--white); /* Zone provides the white bg */
+}
+
+/* Sections inside the rain-zone must be transparent so the canvas shows through */
+.rain-zone section {
+  background: transparent !important;
+}
+
+/* The rain canvas itself */
+#rain-canvas-zone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0; /* Behind section content (z:15) but above zone's bg */
+}
+
+/* ============================================================ */
+/* MID-PAGE HEXAGON WINDOW SYSTEM                               */
+/* ============================================================ */
+
+/* Divider A: White on top, bumps go DOWN into orange */
+.mid-divider-open {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 8; /* Above orange-window (z=6), below white sections (z=15) */
+  margin-top: -1px; /* Pull into white section above to seal sub-pixel gaps */
+  margin-bottom: -4px; /* Seal the gap to the orange-window below */
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.18));
+  /* Clip top edge so shadow doesn't bleed into white section above */
+  clip-path: inset(0px -100px -300px -100px);
+}
+
+/* Divider B: White on bottom, bumps go UP into orange */
+.mid-divider-close {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 8;
+  margin-top: -4px; /* Seal the gap to the orange-window above */
+  margin-bottom: -1px; /* Pull into white section below to seal sub-pixel gaps */
+  filter: drop-shadow(0 -15px 30px rgba(0,0,0,0.18));
+  /* Clip bottom edge so shadow doesn't bleed into white section below */
+  clip-path: inset(-300px -100px 0px -100px);
+}
+
+/* The transparent orange window between the two dividers.
+   IMPORTANT: .scrolling-wrapper section has z-index: 15, so we MUST use !important here
+   to place the orange-window BELOW the mid-divider SVGs (z-index: 8) */
+.scrolling-wrapper section.orange-window,
+.orange-window {
+  background: transparent !important;
+  min-height: 100vh !important; /* Tall enough for the 0.5x parallax lag to look natural */
+  padding: 80px 0 !important;
+  position: relative;
+  z-index: 3 !important; /* BELOW mid-dividers (z-index: 8) → white hex properly covers edges */
+  text-align: center;
+}
+
+/* Normal flow container — GSAP will apply transform for parallax effect */
+.orange-window .container {
+  position: relative;
+  text-align: center;
+  padding: 0 20px;
+}
+
+
+.window-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dark);
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.window-headline {
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--dark);
+  margin-bottom: 28px;
+  -webkit-text-stroke: 2px var(--dark);
+  color: transparent;
+}
+
+.window-sub {
+  font-size: 1.2rem;
+  color: var(--dark);
+  max-width: 480px;
+  margin: 0 auto;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Signup form inside the orange window */
+.window-signup-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.window-signup-sub {
+  font-size: 1.1rem;
+  color: var(--dark);
+  opacity: 0.75;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* Override form inputs for the orange window context */
+.orange-window .form-wrapper input {
+  background: rgba(255,255,255,0.9);
+  border: 2px solid var(--dark);
+  color: var(--dark);
+}
+
+.orange-window .form-wrapper input::placeholder {
+  color: rgba(0,0,0,0.45);
+}
+
+.orange-window .form-wrapper input:focus {
+  background: var(--white);
+  outline: none;
+  border-color: var(--dark);
+  box-shadow: 3px 3px 0 var(--dark);
+}
+
+.orange-window .btn {
+  background: var(--dark);
+  color: var(--white);
+  border: 2px solid var(--dark);
+  width: 100%;
+}
+
+.orange-window .btn:hover {
+  background: var(--white);
+  color: var(--dark);
+}
+
+
+
+
+/* Doodle Styling for Content Sections */
+.doodle-heading {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: var(--white);
+  /* Text shadow for 3D pseudo stroke effect */
+  text-shadow: 
+    -2px -2px 0 var(--dark),
+     2px -2px 0 var(--dark),
+    -2px  2px 0 var(--dark),
+     2px  2px 0 var(--dark),
+     4px  4px 0 var(--dark); /* Hand-drawn chunky drop shadow */
+}
+
+.doodle-point {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 30px;
+}
+
+.doodle-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+.doodle-lines .line {
+  height: 3px;
+  background-color: var(--dark);
+  border-radius: 3px;
+}
+
+
+/* Layout Modules */
+.split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 100px;
+}
+
+.split-section.reverse {
+  direction: rtl;
+}
+
+.split-section.reverse > * {
+  direction: ltr;
+}
+
+.feature-list {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+  color: var(--gray);
+}
+
+.feature-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary);
+}
+
+/* Video Placeholder */
+.video-wrapper {
+  background: var(--white);
+  max-width: 750px;
+  margin: 40px auto 0;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--dark);
+  position: relative;
+  border: none;
+}
+
+.play-button {
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--dark);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.play-button:hover {
+  background: var(--dark);
+}
+
+.play-button:hover svg {
+  fill: var(--white);
+}
+
+.play-button svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--dark);
+  margin-left: 4px;
+  transition: fill 0.3s;
+}
+
+/* System Combination */
+.combination-section {
+  text-align: center;
+}
+
+.images-combined {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin: 80px 0;
+}
+
+.plus-icon {
+  font-size: 2rem;
+  color: var(--gray);
+  font-weight: 300;
+}
+
+.images-combined img {
+  width: 280px;
+}
+
+/* About Us */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 80px;
+}
+
+.founder-card {
+  text-align: center;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  background: transparent;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.founder-card h3 {
+  color: var(--dark);
+}
+
+/* Form Area */
+.email-signup {
+  text-align: center;
+}
+
+.form-wrapper {
+  max-width: 500px;
+  margin: 60px auto 0;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 18px 0;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  font-size: 1.05rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.3s;
+  color: var(--dark);
+}
+
+input::placeholder {
+  color: #bbbbbb;
+}
+
+input:focus {
+  border-bottom-color: var(--dark);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-wrapper button {
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* FAQ */
+.faq-list {
+  max-width: 700px;
+  margin: 60px auto 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid transparent;
+}
+
+.faq-question {
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.125rem;
+}
+
+.faq-icon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--dark);
+  transition: transform 0.3s;
+}
+
+.faq-icon::before {
+  top: 7px;
+  left: 0;
+  width: 16px;
+  height: 1px;
+}
+
+.faq-icon::after {
+  top: 0;
+  left: 7px;
+  width: 1px;
+  height: 16px;
+}
+
+.faq-item.active .faq-icon::after {
+  transform: rotate(90deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding-bottom: 30px;
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Footer */
+footer {
+  padding: 100px 0 60px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.footer-col h4 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: var(--dark);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 16px;
+}
+
+.footer-links a {
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  color: var(--gray);
+  font-size: 0.85rem;
+}
+
+/* Animations removed as per request to prevent background bleed-through */
+
+/* Preloader */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--dark); /* Black background */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.4s ease;
+}
+
+#preloader.zooming {
+  background-color: transparent;
+  transition: background-color 0.4s ease 0.4s;
+  pointer-events: none;
+}
+
+.cube-interface {
+  position: relative;
+  width: 450px;
+  height: 450px; /* Big cube */
+  transition: transform 2s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.cube-interface.zoom {
+  transform: scale(200);
+}
+
+.center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: background-color 0.4s ease;
+}
+
+#preloader.zooming .center-dot {
+  background-color: transparent;
+  transition: background-color 0.4s ease 0.4s;
+}
+
+.peripheral-dot {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Positioning in a hexagon around center */
+/* Radius ~ 150px */
+.dot-30  { top: calc(50% - 130px); left: calc(50% + 75px); transform: translate(-50%, -50%); }
+.dot-90  { top: 50%; left: calc(50% + 150px); transform: translate(-50%, -50%); } /* Orange dot */
+.dot-150 { top: calc(50% + 130px); left: calc(50% + 75px); transform: translate(-50%, -50%); }
+.dot-210 { top: calc(50% + 130px); left: calc(50% - 75px); transform: translate(-50%, -50%); }
+.dot-270 { top: 50%; left: calc(50% - 150px); transform: translate(-50%, -50%); }
+.dot-330 { top: calc(50% - 130px); left: calc(50% - 75px); transform: translate(-50%, -50%); }
+
+.peripheral-dot.active {
+  opacity: 1;
+}
+
+.peripheral-dot.active-orange {
+  opacity: 1;
+  background-color: var(--primary); /* Orange */
+}
+
+.loading-text {
+  margin-top: 60px;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: opacity 0.3s ease;
+}
+
+#preloader.zooming .loading-text {
+  opacity: 0;
+}
+
+
+/* ========================================================================= */
+/* SECTION ENHANCEMENTS (PREMIUM VERTICAL LAYOUT)                            */
+/* ========================================================================= */
+
+/* Clean white foreground sections */
+.section-padding {
+  padding: 120px 0;
+  border-bottom: none; /* Removed section borders */
+}
+
+.section-padding:last-of-type {
+  border-bottom: none;
+}
+
+/* Section-specific overrides removed — all sections now use the default white background */
+.combination-section {
+  color: var(--dark);
+}
+
+.combination-section .lead, .combination-section h2 {
+  color: var(--dark);
+}
+
+/* Image Enhancements — borders and shadows removed for a flatter look */
+.image-content img {
+  border: none;
+  box-shadow: none;
+}
+
+/* Typography Polish */
+h1, h2 {
+  font-weight: 600;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  /* On mobile the SVG gets scaled wider, so the hex teeth extend further down.
+     A larger negative margin pulls the white content up to meet them. */
+  .transition-divider {
+    margin-bottom: -20px;
+  }
+
+  .mid-divider-open {
+    margin-bottom: -2px;
+  }
+
+  .mid-divider-close {
+    margin-top: -2px;
+  }
+  
+  .split-section, .about-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .split-section.reverse {
+    direction: ltr;
+  }
+  
+  .hero-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .images-combined {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+}
