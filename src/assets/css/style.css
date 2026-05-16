@@ -940,6 +940,10 @@ h1, h2 {
     margin-top: -60px;
   }
 
+  .hero {
+    padding-top: 160px;
+  }
+
   .window-signup-title {
     font-size: 1.8rem;
   }
