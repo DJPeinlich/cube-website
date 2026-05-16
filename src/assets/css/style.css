@@ -936,7 +936,7 @@ h1, h2 {
     position: relative;
     height: auto;
     min-height: unset;
-    padding: 120px 20px 80px;
+    padding: 160px 20px 80px;
   }
 
   .scrolling-wrapper {
