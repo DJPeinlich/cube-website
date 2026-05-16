@@ -950,15 +950,17 @@ h1, h2 {
   }
 
   .transition-divider {
-    margin-bottom: -30px;
+    display: none !important;
   }
 
   .mid-divider-open {
     margin-bottom: -30px;
+    filter: none;
   }
 
   .mid-divider-close {
     margin-top: -30px;
+    filter: none;
   }
 
   .scrolling-wrapper section.orange-window,
