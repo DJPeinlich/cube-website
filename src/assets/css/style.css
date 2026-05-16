@@ -928,18 +928,24 @@ h1, h2 {
     display: none;
   }
 
-  /* On mobile the SVG gets scaled wider, so the hex teeth extend further down.
-     A larger negative margin pulls the white content up to meet them. */
   .transition-divider {
-    margin-bottom: -20px;
+    margin-bottom: -40px;
   }
 
   .mid-divider-open {
-    margin-bottom: -2px;
+    margin-bottom: -60px;
   }
 
   .mid-divider-close {
-    margin-top: -2px;
+    margin-top: -60px;
+  }
+
+  .window-signup-title {
+    font-size: 1.8rem;
+  }
+
+  .orange-window {
+    padding: 120px 0 !important;
   }
   
   .split-section, .about-grid {
