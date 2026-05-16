@@ -937,16 +937,18 @@ h1, h2 {
     height: auto;
     min-height: unset;
     padding: 160px 20px 80px;
+    overflow: hidden;
   }
 
   .scrolling-wrapper {
     margin-top: 0;
+    background: var(--white);
   }
 
   .transition-divider,
   .mid-divider-open,
   .mid-divider-close {
-    display: none;
+    display: none !important;
   }
 
   .scrolling-wrapper section.orange-window,
