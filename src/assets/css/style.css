@@ -928,25 +928,21 @@ h1, h2 {
     display: none;
   }
 
-  .transition-divider {
-    margin-bottom: -40px;
+  section {
+    min-height: unset;
   }
 
   .hero {
     position: relative;
     height: auto;
     min-height: unset;
-    padding: 160px 20px 80px;
-    overflow: hidden;
+    padding: 160px 20px 120px;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 57% 88%, 50% 100%, 43% 88%, 0 88%);
+    margin-bottom: -2px;
   }
 
   .scrolling-wrapper {
     margin-top: 0;
-    background: var(--white);
-  }
-
-  section {
-    min-height: unset;
   }
 
   .transition-divider {
@@ -965,11 +961,6 @@ h1, h2 {
     filter: none;
     z-index: 20;
     position: relative;
-  }
-
-  .scrolling-wrapper section.orange-window,
-  .orange-window {
-    padding: 80px 20px !important;
   }
 
   .scrolling-wrapper section.orange-window,
