@@ -932,12 +932,15 @@ h1, h2 {
     margin-bottom: -40px;
   }
 
-  .mid-divider-open {
-    margin-bottom: -60px;
+  .mid-divider-open,
+  .mid-divider-close {
+    display: none;
   }
 
-  .mid-divider-close {
-    margin-top: -60px;
+  .scrolling-wrapper section.orange-window,
+  .orange-window {
+    background: var(--primary) !important;
+    padding: 80px 0 !important;
   }
 
   .hero {
@@ -946,10 +949,6 @@ h1, h2 {
 
   .window-signup-title {
     font-size: 1.8rem;
-  }
-
-  .orange-window {
-    padding: 120px 0 !important;
   }
   
   .split-section, .about-grid {
