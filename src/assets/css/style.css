@@ -776,7 +776,7 @@ footer {
 }
 
 .footer-links a {
-  color: var(--gray);
+  color: var(--dark);
   font-size: 0.95rem;
 }
 
@@ -785,7 +785,7 @@ footer {
   justify-content: space-between;
   padding-top: 40px;
   border-top: 1px solid var(--border);
-  color: var(--gray);
+  color: var(--dark);
   font-size: 0.85rem;
 }
 
