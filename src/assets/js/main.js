@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 3. Hero Parallax Drift (Immersive Effect)
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && window.innerWidth > 768) {
       gsap.registerPlugin(ScrollTrigger);
 
       // Animate the entire hero section (orange background + text) to scroll up slower than the foreground

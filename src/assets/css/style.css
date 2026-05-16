@@ -944,7 +944,8 @@ h1, h2 {
   }
 
   .hero {
-    padding-top: 160px;
+    padding-top: 200px;
+    justify-content: flex-start;
   }
 
   .window-signup-title {
