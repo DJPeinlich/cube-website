@@ -932,6 +932,18 @@ h1, h2 {
     margin-bottom: -40px;
   }
 
+  .hero {
+    position: relative;
+    height: auto;
+    min-height: unset;
+    padding: 120px 20px 80px;
+  }
+
+  .scrolling-wrapper {
+    margin-top: 0;
+  }
+
+  .transition-divider,
   .mid-divider-open,
   .mid-divider-close {
     display: none;
@@ -940,12 +952,7 @@ h1, h2 {
   .scrolling-wrapper section.orange-window,
   .orange-window {
     background: var(--primary) !important;
-    padding: 80px 0 !important;
-  }
-
-  .hero {
-    padding-top: 200px;
-    justify-content: flex-start;
+    padding: 80px 20px !important;
   }
 
   .window-signup-title {
