@@ -956,11 +956,15 @@ h1, h2 {
   .mid-divider-open {
     margin-bottom: -30px;
     filter: none;
+    z-index: 20;
+    position: relative;
   }
 
   .mid-divider-close {
     margin-top: -30px;
     filter: none;
+    z-index: 20;
+    position: relative;
   }
 
   .scrolling-wrapper section.orange-window,
