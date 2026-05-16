@@ -945,16 +945,10 @@ h1, h2 {
     background: var(--white);
   }
 
-  .transition-divider {
-    margin-bottom: -40px;
-  }
-
-  .mid-divider-open {
-    margin-bottom: -40px;
-  }
-
+  .transition-divider,
+  .mid-divider-open,
   .mid-divider-close {
-    margin-top: -40px;
+    display: none !important;
   }
 
   .scrolling-wrapper section.orange-window,
