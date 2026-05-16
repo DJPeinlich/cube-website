@@ -945,6 +945,10 @@ h1, h2 {
     background: var(--white);
   }
 
+  section {
+    min-height: unset;
+  }
+
   .transition-divider {
     margin-bottom: -30px;
   }
@@ -959,7 +963,7 @@ h1, h2 {
 
   .scrolling-wrapper section.orange-window,
   .orange-window {
-    padding: 150px 20px !important;
+    padding: 80px 20px !important;
   }
 
   .scrolling-wrapper section.orange-window,
